@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tienda oficial de Crontor - Compra rangos, tierras, monedas y accesorios">
+    <title>Tienda - Crontor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-gradient"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="imagenes_hytale/logo_pequeño.png" alt="Crontor" style="height: 140px;">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="store.html" class="nav-link" style="color: var(--color-purple-light);">Tienda</a>
+                <!-- User Profile (shown when logged in) -->
+                <div id="user-profile" class="user-profile" style="display: none;">
+                    <div class="user-info">
+                        <span class="user-rank">Aldeano</span>
+                        <span class="user-name" id="user-name">Usuario</span>
+                    </div>
+                    <button onclick="logout()" class="btn-logout" title="Cerrar sesión">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- Login Button (shown when not logged in) -->
+                <button id="login-btn" onclick="openModal('login-modal')" class="btn btn-primary">Iniciar
+                    Sesión</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Store Hero -->
+    <section class="hero" style="padding-top: 8rem; padding-bottom: 3rem;">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title animate-fade-in" style="font-size: clamp(2rem, 5vw, 3.5rem);">
+                    <span class="gradient-text">Tienda</span> Crontor
+                </h1>
+                <p class="hero-description animate-fade-in">
+                    Mejora tu experiencia con rangos exclusivos, tierras, monedas y accesorios únicos
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Filter -->
+    <section class="section" style="padding-top: 1rem;">
+        <div class="container">
+            <div class="category-filter">
+                <button class="category-btn active" onclick="filterCategory('rangos')">
+                    👑 Rangos
+                </button>
+                <button class="category-btn" onclick="filterCategory('tierras')">
+                    🏞️ Tierras
+                </button>
+                <button class="category-btn" onclick="filterCategory('monedas')">
+                    💰 Monedas
+                </button>
+                <button class="category-btn" onclick="filterCategory('accesorios')">
+                    ✨ Accesorios
+                </button>
+                <button class="category-btn" onclick="filterCategory('donaciones')">
+                    💝 Donaciones
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="section" style="padding-top: 2rem;">
+        <div class="container">
+            <div class="products-grid" id="products-grid">
+
+                <!-- RANGOS -->
+                <div class="product-card glass-card animate-slide-up" data-category="rangos">
+                    <div class="product-badge">Nivel 1</div>
+                    <div class="product-header rank-caballero">
+                        <img src="imagenes_hytale/Caballero.png" alt="Caballero" class="product-image">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">
+                            Caballero</h3>
+                        <ul class="product-features">
+                            <li>✓ Kit de Hierro Completo</li>
+                            <li>✓ Espada Reforzada</li>
+                            <li>✓ Prefijo [Caballero]</li>
+                            <li>✓ Acceso a zona VIP</li>
+                        </ul>
+                        <div class="product-footer">
+                            <span class="product-price">$5.000</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small"
+                                    onclick="openGiftModal('Caballero', 5000)">🎁 Regalo</button>
+                                <button class="btn btn-primary btn-small"
+                                    onclick="openCheckout('Caballero', 5000)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glass-card animate-slide-up" data-category="rangos">
+                    <div class="product-badge">Nivel 2</div>
+                    <div class="product-header rank-conde">
+                        <img src="imagenes_hytale/Conde.png" alt="Conde" class="product-image">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">Conde
+                        </h3>
+                        <ul class="product-features">
+                            <li>✓ Todo lo anterior +</li>
+                            <li>✓ Mascota: Lobo de Nieve</li>
+                            <li>✓ Comando /workbench</li>
+                            <li>✓ Kit semanal mejorado</li>
+                        </ul>
+                        <div class="product-footer">
+                            <span class="product-price">$10.000</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small" onclick="openGiftModal('Conde', 10000)">🎁
+                                    Regalo</button>
+                                <button class="btn btn-primary btn-small"
+                                    onclick="openCheckout('Conde', 10000)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glass-card animate-slide-up" data-category="rangos">
+                    <div class="product-badge">Nivel 3</div>
+                    <div class="product-header rank-duque">
+                        <img src="imagenes_hytale/Duque.png" alt="Duque" class="product-image">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">Duque
+                        </h3>
+                        <ul class="product-features">
+                            <li>✓ Vuelo en Lobby /fly</li>
+                            <li>✓ Comando /enderchest</li>
+                            <li>✓ Mascota legendaria</li>
+                            <li>✓ Chat con colores</li>
+                        </ul>
+                        <div class="product-footer">
+                            <span class="product-price">$20.000</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small" onclick="openGiftModal('Duque', 20000)">🎁
+                                    Regalo</button>
+                                <button class="btn btn-primary btn-small"
+                                    onclick="openCheckout('Duque', 20000)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glass-card animate-slide-up premium-card" data-category="rangos">
+                    <div class="product-badge premium">Máximo</div>
+                    <div class="product-header rank-soberano">
+                        <img src="imagenes_hytale/Soberano.png" alt="Soberano" class="product-image">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">Soberano
+                        </h3>
+                        <ul class="product-features">
+                            <li>✓ Kit de Torio (Legendario)</li>
+                            <li>✓ Vuelo en Survival</li>
+                            <li>✓ Acceso a betas cerradas</li>
+                            <li>✓ Todas las ventajas anteriores</li>
+                        </ul>
+                        <div class="product-footer">
+                            <span class="product-price premium">$35.000</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small"
+                                    onclick="openGiftModal('Soberano', 35000)">🎁 Regalo</button>
+                                <button class="btn btn-hero btn-small"
+                                    onclick="openCheckout('Soberano', 35000)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TIERRAS -->
+                <div class="product-card glass-card animate-slide-up" data-category="tierras">
+                    <div class="product-header land-header">
+                        <div class="land-visual">6x6</div>
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">Terreno
+                            Pequeño</h3>
+                        <p class="product-description">Perfecto para comenzar tu aventura. 36 bloques de espacio.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$2.000</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small"
+                                    onclick="openGiftModal('Terreno 6x6', 2000)">🎁 Regalo</button>
+                                <button class="btn btn-primary btn-small"
+                                    onclick="openCheckout('Terreno 6x6', 2000)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glass-card animate-slide-up" data-category="tierras">
+                    <div class="product-header land-header">
+                        <div class="land-visual">20x20</div>
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">Terreno
+                            Mediano</h3>
+                        <p class="product-description">Espacio ideal para construcciones medianas. 400 bloques.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$5.000</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small"
+                                    onclick="openGiftModal('Terreno 20x20', 5000)">🎁 Regalo</button>
+                                <button class="btn btn-primary btn-small"
+                                    onclick="openCheckout('Terreno 20x20', 5000)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glass-card animate-slide-up" data-category="tierras">
+                    <div class="product-header land-header">
+                        <div class="land-visual">40x40</div>
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">Terreno
+                            Grande</h3>
+                        <p class="product-description">Para grandes proyectos. 1,600 bloques de construcción.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$12.000</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small"
+                                    onclick="openGiftModal('Terreno 40x40', 12000)">🎁 Regalo</button>
+                                <button class="btn btn-primary btn-small"
+                                    onclick="openCheckout('Terreno 40x40', 12000)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glass-card animate-slide-up premium-card" data-category="tierras">
+                    <div class="product-badge premium">Mega</div>
+                    <div class="product-header land-header">
+                        <div class="land-visual premium">60x60</div>
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">Terreno
+                            Mega</h3>
+                        <p class="product-description">El terreno definitivo. 3,600 bloques para tus sueños más grandes.
+                        </p>
+                        <div class="product-footer">
+                            <span class="product-price premium">$25.000</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small"
+                                    onclick="openGiftModal('Terreno 60x60', 25000)">🎁 Regalo</button>
+                                <button class="btn btn-hero btn-small"
+                                    onclick="openCheckout('Terreno 60x60', 25000)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MONEDAS -->
+                <div class="product-card glass-card animate-slide-up" data-category="monedas">
+                    <div class="product-header">
+                        <img src="imagenes_hytale/moneda1.png" alt="100 Monedas" class="product-image coin-image">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">100
+                            Monedas</h3>
+                        <p class="product-description">Paquete inicial para comenzar.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$1.000</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small"
+                                    onclick="openGiftModal('100 Monedas', 1000)">🎁 Regalo</button>
+                                <button class="btn btn-primary btn-small"
+                                    onclick="openCheckout('100 Monedas', 1000)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glass-card animate-slide-up" data-category="monedas">
+                    <div class="product-badge">+10% Bonus</div>
+                    <div class="product-header">
+                        <img src="imagenes_hytale/Varias_monedas.png" alt="500 Monedas"
+                            class="product-image coin-image">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">500
+                            Monedas</h3>
+                        <p class="product-description">Incluye 50 monedas de bonificación.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$4.500</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small"
+                                    onclick="openGiftModal('500 Monedas', 4500)">🎁 Regalo</button>
+                                <button class="btn btn-primary btn-small"
+                                    onclick="openCheckout('500 Monedas', 4500)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glass-card animate-slide-up" data-category="monedas">
+                    <div class="product-badge">+15% Bonus</div>
+                    <div class="product-header">
+                        <img src="imagenes_hytale/saco_de_monedas.png" alt="1000 Monedas"
+                            class="product-image coin-image">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">1,000
+                            Monedas</h3>
+                        <p class="product-description">Incluye 150 monedas de bonificación.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$8.500</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small"
+                                    onclick="openGiftModal('1000 Monedas', 8500)">🎁 Regalo</button>
+                                <button class="btn btn-primary btn-small"
+                                    onclick="openCheckout('1000 Monedas', 8500)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glass-card animate-slide-up premium-card" data-category="monedas">
+                    <div class="product-badge premium">+25% Bonus</div>
+                    <div class="product-header">
+                        <img src="imagenes_hytale/cofre_con_monedas.png" alt="5000 Monedas"
+                            class="product-image coin-image">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">5,000
+                            Monedas</h3>
+                        <p class="product-description">¡Incluye 1,250 monedas de bonificación!</p>
+                        <div class="product-footer">
+                            <span class="product-price premium">$35.000</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small"
+                                    onclick="openGiftModal('5000 Monedas', 35000)">🎁 Regalo</button>
+                                <button class="btn btn-hero btn-small"
+                                    onclick="openCheckout('5000 Monedas', 35000)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACCESORIOS -->
+                <div class="product-card glass-card animate-slide-up" data-category="accesorios">
+                    <div class="product-header">
+                        <img src="imagenes_hytale/conjunto_accesor1.png" alt="Conjunto Accesorio 1"
+                            class="product-image">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">Conjunto
+                            Místico</h3>
+                        <p class="product-description">Set completo de accesorios mágicos con efectos especiales.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$5.000</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small"
+                                    onclick="openGiftModal('Conjunto Místico', 5000)">🎁 Regalo</button>
+                                <button class="btn btn-primary btn-small"
+                                    onclick="openCheckout('Conjunto Místico', 5000)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glass-card animate-slide-up" data-category="accesorios">
+                    <div class="product-header">
+                        <img src="imagenes_hytale/conjunto_accesor2.png" alt="Conjunto Accesorio 2"
+                            class="product-image">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">Conjunto
+                            Legendario</h3>
+                        <p class="product-description">Accesorios exclusivos con diseños únicos y brillos.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$4.000</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small"
+                                    onclick="openGiftModal('Conjunto Legendario', 4000)">🎁 Regalo</button>
+                                <button class="btn btn-primary btn-small"
+                                    onclick="openCheckout('Conjunto Legendario', 4000)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glass-card animate-slide-up" data-category="accesorios">
+                    <div class="product-header">
+                        <img src="imagenes_hytale/conjunto_accesor3.png" alt="Conjunto Accesorio 3"
+                            class="product-image">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">Conjunto
+                            de Aventurero</h3>
+                        <p class="product-description">Set completo para exploradores con estilo y funcionalidad.</p>
+                        <div class="product-footer">
+                            <span class="product-price">$3.500</span>
+                            <div class="product-actions">
+                                <button class="btn btn-secondary btn-small"
+                                    onclick="openGiftModal('Conjunto de Aventurero', 3500)">🎁 Regalo</button>
+                                <button class="btn btn-primary btn-small"
+                                    onclick="openCheckout('Conjunto de Aventurero', 3500)">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DONACIONES -->
+                <div class="product-card glass-card animate-slide-up donation-card" data-category="donaciones">
+                    <div class="product-badge premium">💝 Apoya el Servidor</div>
+                    <div class="product-header donation-header">
+                        <div class="product-icon" style="font-size: 4rem;">❤️</div>
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title" style="text-align: center; margin-bottom: var(--spacing-md);">Donación
+                            Personalizada</h3>
+                        <p class="product-description" style="text-align: center; margin-bottom: var(--spacing-md);">
+                            Tu apoyo nos ayuda a mantener y mejorar el servidor. ¡Cada donación cuenta!
+                        </p>
+                        <div class="donation-input-group">
+                            <label for="donation-amount"
+                                style="display: block; text-align: center; margin-bottom: var(--spacing-sm); color: var(--color-text-muted); font-size: 0.875rem;">
+                                Ingresa el monto a donar (CLP)
+                            </label>
+                            <div
+                                style="display: flex; align-items: center; gap: var(--spacing-sm); margin-bottom: var(--spacing-md);">
+                                <span style="font-size: 1.5rem; color: var(--color-text-primary);">$</span>
+                                <input type="number" id="donation-amount" class="donation-input" placeholder="1000"
+                                    min="500" step="100"
+                                    style="flex: 1; padding: var(--spacing-sm); background: rgba(26, 26, 36, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-sm); color: var(--color-text-primary); font-size: 1.25rem; text-align: center;">
+                            </div>
+                            <div
+                                style="display: flex; gap: var(--spacing-xs); margin-bottom: var(--spacing-md); flex-wrap: wrap;">
+                                <button class="btn btn-small"
+                                    style="flex: 1; min-width: 80px; background: rgba(107, 114, 128, 0.2); border: 1px solid rgba(156, 163, 175, 0.3);"
+                                    onclick="setDonationAmount(1000)">$1.000</button>
+                                <button class="btn btn-small"
+                                    style="flex: 1; min-width: 80px; background: rgba(107, 114, 128, 0.2); border: 1px solid rgba(156, 163, 175, 0.3);"
+                                    onclick="setDonationAmount(5000)">$5.000</button>
+                                <button class="btn btn-small"
+                                    style="flex: 1; min-width: 80px; background: rgba(107, 114, 128, 0.2); border: 1px solid rgba(156, 163, 175, 0.3);"
+                                    onclick="setDonationAmount(10000)">$10.000</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-hero" style="width: 100%; justify-content: center;"
+                            onclick="processDonation()">
+                            💝 Donar Ahora
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">La mejor experiencia de Hytale en español</p>
+        </div>
+    </footer>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeModal('checkout-modal')"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2 class="modal-title">Confirmar Compra</h2>
+                <button onclick="closeModal('checkout-modal')" class="modal-close">&times;</button>
+            </div>
+            <div class="checkout-info">
+                <div class="checkout-item">
+                    <span class="checkout-label">Producto:</span>
+                    <span class="checkout-value" id="checkout-product">-</span>
+                </div>
+                <div class="checkout-item">
+                    <span class="checkout-label">Precio:</span>
+                    <span class="checkout-value" id="checkout-price">$0</span>
+                </div>
+                <div class="checkout-item">
+                    <span class="checkout-label">Usuario:</span>
+                    <span class="checkout-value" id="checkout-user">-</span>
+                </div>
+            </div>
+            <p class="checkout-note">Selecciona tu método de pago preferido</p>
+            <button class="btn btn-hero" style="width: 100%; justify-content: center;" onclick="openPaymentModal()">
+                Continuar al Pago
+            </button>
+        </div>
+    </div>
+
+    <!-- Gift Modal -->
+    <div id="gift-modal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeModal('gift-modal')"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2 class="modal-title">🎁 Regalar <span id="gift-product-name"></span></h2>
+                <button onclick="closeModal('gift-modal')" class="modal-close">&times;</button>
+            </div>
+            <form class="auth-form" onsubmit="handleGift(event)">
+                <div class="form-group">
+                    <label for="gift-recipient">Usuario destinatario</label>
+                    <input type="text" id="gift-recipient" placeholder="Nombre de usuario en el servidor" required>
+                    <small style="color: var(--color-text-muted); font-size: 0.875rem;">El usuario debe estar registrado
+                        en el servidor</small>
+                </div>
+                <div class="checkout-info" style="margin-top: var(--spacing-md);">
+                    <div class="checkout-item">
+                        <span class="checkout-label">Producto:</span>
+                        <span class="checkout-value" id="gift-product">-</span>
+                    </div>
+                    <div class="checkout-item">
+                        <span class="checkout-label">Precio:</span>
+                        <span class="checkout-value" id="gift-price">$0</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-hero"
+                    style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">
+                    Continuar al Pago
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Method Modal -->
+    <div id="payment-modal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeModal('payment-modal')"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2 class="modal-title">Selecciona Método de Pago</h2>
+                <button onclick="closeModal('payment-modal')" class="modal-close">&times;</button>
+            </div>
+            <div class="payment-methods">
+                <button class="payment-method-btn" onclick="selectPaymentMethod('paypal')">
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-name">PayPal</div>
+                    <div class="payment-desc">Pago seguro con PayPal</div>
+                </button>
+                <button class="payment-method-btn" onclick="selectPaymentMethod('card')">
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-name">Tarjeta de Crédito/Débito</div>
+                    <div class="payment-desc">Visa, Mastercard, American Express</div>
+                </button>
+                <button class="payment-method-btn" onclick="selectPaymentMethod('mercadopago')">
+                    <div class="payment-icon">💰</div>
+                    <div class="payment-name">Mercado Pago</div>
+                    <div class="payment-desc">Disponible en Latinoamérica</div>
+                </button>
+                <button class="payment-method-btn" onclick="selectPaymentMethod('webpay')">
+                    <div class="payment-icon">🏦</div>
+                    <div class="payment-name">WebPay</div>
+                    <div class="payment-desc">Transbank (Chile)</div>
+                </button>
+            </div>
+            <p class="checkout-note" style="margin-top: var(--spacing-md);">
+                Esta es una demostración. En producción, aquí se integrarían los sistemas de pago reales.
+            </p>
+        </div>
+    </div>
+
+    <!-- Login/Register Modals (same as index.html) -->
+    <div id="login-modal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeModal('login-modal')"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2 class="modal-title">Iniciar Sesión</h2>
+                <button onclick="closeModal('login-modal')" class="modal-close">&times;</button>
+            </div>
+            <form class="auth-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="login-username">Usuario de Hytale</label>
+                    <input type="text" id="login-username" placeholder="Tu nombre de usuario" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Contraseña</label>
+                    <input type="password" id="login-password" placeholder="Tu contraseña" required>
+                </div>
+                <button type="submit" class="btn btn-primary"
+                    style="width: 100%; justify-content: center;">Entrar</button>
+            </form>
+            <div class="auth-divider">
+                <span>o</span>
+            </div>
+            <button onclick="switchToRegister()" class="btn-text">¿No tienes cuenta? Regístrate</button>
+        </div>
+    </div>
+
+    <div id="register-modal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeModal('register-modal')"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2 class="modal-title">Crear Cuenta</h2>
+                <button onclick="closeModal('register-modal')" class="modal-close">&times;</button>
+            </div>
+            <form class="auth-form" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label for="register-username">Usuario de Hytale</label>
+                    <input type="text" id="register-username" placeholder="Elige tu nombre de usuario" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Contraseña</label>
+                    <input type="password" id="register-password" placeholder="Crea una contraseña" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm">Confirmar Contraseña</label>
+                    <input type="password" id="register-confirm" placeholder="Confirma tu contraseña" required>
+                </div>
+                <button type="submit" class="btn btn-primary"
+                    style="width: 100%; justify-content: center;">Registrarse</button>
+            </form>
+            <div class="auth-divider">
+                <span>o</span>
+            </div>
+            <button onclick="switchToLogin()" class="btn-text">¿Ya tienes cuenta? Inicia sesión</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

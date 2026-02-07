@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Servidor de Hytale en español. Conecta y juega con jugadores hispanohablantes.">
+    <title>Crontor - Servidor de Hytale en Español | Juega en Español</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-gradient"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="imagenes_hytale/logo_pequeño.png" alt="Crontor" style="height: 140px;">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="store.html" class="nav-link">Tienda</a>
+                <!-- User Profile (shown when logged in) -->
+                <div id="user-profile" class="user-profile" style="display: none;">
+                    <div class="user-info">
+                        <span class="user-rank">Aldeano</span>
+                        <span class="user-name" id="user-name">Usuario</span>
+                    </div>
+                    <button onclick="logout()" class="btn-logout" title="Cerrar sesión">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- Login Button (shown when not logged in) -->
+                <button id="login-btn" onclick="openModal('login-modal')" class="btn btn-primary">Iniciar
+                    Sesión</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <!-- Large Logo -->
+                <div style="text-align: center; margin-bottom: var(--spacing-sm);">
+                    <img src="imagenes_hytale/Logo.png" alt="Crontor"
+                        style="max-width: 800px; width: 100%; height: auto;">
+                </div>
+
+                <h1 class="hero-title animate-fade-in">
+                    Servidor de <span class="gradient-text">Hytale</span> en Español
+                </h1>
+                <div class="hero-badge animate-fade-in">
+                    <span class="badge-pulse"></span>
+                    ¡Servidor ya disponible!
+                </div>
+                <p class="hero-description animate-fade-in">
+                    Únete a la comunidad hispanohablante más grande de Hytale. Explora, construye y conquista en un
+                    mundo lleno de aventuras.
+                </p>
+
+                <!-- Server Address -->
+                <div class="server-address-container" style="margin-top: var(--spacing-xl); text-align: center;">
+                    <p
+                        style="color: var(--color-text-primary); font-size: 1.25rem; margin-bottom: var(--spacing-md); font-weight: 600;">
+                        Dirección del Servidor
+                    </p>
+                    <div class="server-address-box" onclick="copyServerAddress()"
+                        style="display: inline-flex; align-items: center; gap: var(--spacing-md); background: rgba(26, 26, 36, 0.8); border: 2px solid rgba(139, 92, 246, 0.5); border-radius: var(--radius-md); padding: var(--spacing-lg) var(--spacing-xl); cursor: pointer; transition: all var(--transition-fast); margin-bottom: var(--spacing-sm);">
+                        <span class="server-address"
+                            style="font-family: 'Courier New', monospace; font-size: 1.75rem; color: var(--color-accent); font-weight: 700;">play.crontor.com:6906</span>
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: var(--color-accent);">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </div>
+                    <div class="server-address-box" onclick="copyServerAddressIP()"
+                        style="display: inline-flex; align-items: center; gap: var(--spacing-md); background: rgba(26, 26, 36, 0.8); border: 2px solid rgba(139, 92, 246, 0.5); border-radius: var(--radius-md); padding: var(--spacing-lg) var(--spacing-xl); cursor: pointer; transition: all var(--transition-fast);">
+                        <span class="server-address-ip"
+                            style="font-family: 'Courier New', monospace; font-size: 1.75rem; color: var(--color-accent); font-weight: 700;">147.185.221.25:6906</span>
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: var(--color-accent);">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </div>
+                    <p id="copy-feedback"
+                        style="color: var(--color-accent); font-size: 1rem; margin-top: var(--spacing-md); opacity: 0; transition: opacity 0.3s; font-weight: 600;">
+                        ✓ ¡Dirección copiada!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detalles Section -->
+    <section class="section" id="detalles">
+        <div class="container">
+            <h2 class="section-title">Detalles</h2>
+            <div class="cards-grid">
+                <div class="card glass-card animate-slide-up">
+                    <div class="card-icon">🏔️</div>
+                    <h3 class="card-title">Survival</h3>
+                    <p class="card-description">
+                        Disfruta del modo normal mejorado con otros jugadores, PvP y eventos únicos.
+                    </p>
+                </div>
+                <div class="card glass-card animate-slide-up">
+                    <div class="card-icon">🎮</div>
+                    <h3 class="card-title">Minijuegos</h3>
+                    <p class="card-description">
+                        Compite en emocionantes minijuegos exclusivos del servidor. Juegos del hambre, Skywars, Arenas
+                        con clasificatorias, etc...
+                    </p>
+                </div>
+                <div class="card glass-card animate-slide-up">
+                    <div class="card-icon">👥</div>
+                    <h3 class="card-title">Comunidad</h3>
+                    <p class="card-description">
+                        Comparte esta aventura con una comunidad hispanohablante apasionada por Hytale.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Características Section -->
+    <section class="section section-dark" id="caracteristicas">
+        <div class="container">
+            <h2 class="section-title">Características</h2>
+            <div class="features-list">
+                <div class="feature-item animate-slide-up">
+                    <div class="feature-content">
+                        <div class="feature-icon-large">🐾</div>
+                        <h3 class="feature-title">Mascotas y monturas</h3>
+                        <p class="feature-description">
+                            Consigue mascotas exclusivas y monta criaturas únicas de este servidor. Algunas monturas las
+                            puedes encontrar y domar en el mundo abierto, pero las más exclusivas solo se pueden
+                            conseguir a través de la tienda. Si quieres una mascota o montura única para ti, puedes
+                            comisionar a uno de nuestros artistas.
+                        </p>
+                    </div>
+                </div>
+                <div class="feature-item animate-slide-up">
+                    <div class="feature-content">
+                        <div class="feature-icon-large">🎯</div>
+                        <h3 class="feature-title">Modos de juego</h3>
+                        <p class="feature-description">
+                            Próximamente
+                        </p>
+                    </div>
+                </div>
+                <div class="feature-item animate-slide-up">
+                    <div class="feature-content">
+                        <div class="feature-icon-large">✨</div>
+                        <h3 class="feature-title">Skins personalizadas</h3>
+                        <p class="feature-description">
+                            Destaca entre la multitud con skins completamente personalizadas. Puedes añadir tu propia
+                            skin de forma gratuita, elegir entre cientos de diseños en nuestra tienda, o solicitar una
+                            skin única creada especialmente para ti por nuestro equipo de diseñadores. Todas las skins
+                            son compatibles con otros servidores, así que tu estilo te acompañará donde quiera que
+                            vayas. Exprésate y crea tu identidad en el mundo de Hytale.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contribuciones Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">💝 Contribuciones</span>
+                <h2 class="section-title">Apoya el Servidor</h2>
+                <p class="section-description">
+                    Mantén el servidor en línea. Tu apoyo ayuda a pagar el hosting y desarrollar nuevas modalidades de
+                    juego para la comunidad.
+                </p>
+            </div>
+            <div style="text-align: center; margin-top: var(--spacing-xl);">
+                <a href="store.html#donaciones" class="btn btn-hero" style="display: inline-flex;">
+                    💝 Hacer una Donación
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">¡Únete a Nuestra Comunidad de Discord!</h2>
+                <p class="cta-description">
+                    Conecta con otros jugadores, participa en eventos exclusivos y mantente al día con las últimas
+                    novedades del servidor.
+                </p>
+                <a href="https://discord.gg/6cc8HaNAQk" class="btn btn-hero" target="_blank">
+                    Únete a Discord
+                    <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">La mejor experiencia de Hytale en español</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeModal('login-modal')"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2 class="modal-title">Iniciar Sesión</h2>
+                <button onclick="closeModal('login-modal')" class="modal-close">&times;</button>
+            </div>
+            <form class="auth-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="login-username">Usuario de Hytale</label>
+                    <input type="text" id="login-username" placeholder="Tu nombre de usuario" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Contraseña</label>
+                    <input type="password" id="login-password" placeholder="Tu contraseña" required>
+                </div>
+                <button type="submit" class="btn btn-primary"
+                    style="width: 100%; justify-content: center;">Entrar</button>
+            </form>
+            <div class="auth-divider">
+                <span>o</span>
+            </div>
+            <button onclick="switchToRegister()" class="btn-text">¿No tienes cuenta? Regístrate</button>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeModal('register-modal')"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2 class="modal-title">Crear Cuenta</h2>
+                <button onclick="closeModal('register-modal')" class="modal-close">&times;</button>
+            </div>
+            <form class="auth-form" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label for="register-username">Usuario de Hytale</label>
+                    <input type="text" id="register-username" placeholder="Elige tu nombre de usuario" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Contraseña</label>
+                    <input type="password" id="register-password" placeholder="Crea una contraseña" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm">Confirmar Contraseña</label>
+                    <input type="password" id="register-confirm" placeholder="Confirma tu contraseña" required>
+                </div>
+                <button type="submit" class="btn btn-primary"
+                    style="width: 100%; justify-content: center;">Registrarse</button>
+            </form>
+            <div class="auth-divider">
+                <span>o</span>
+            </div>
+            <button onclick="switchToLogin()" class="btn-text">¿Ya tienes cuenta? Inicia sesión</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
