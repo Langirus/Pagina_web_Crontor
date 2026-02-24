@@ -8,6 +8,15 @@ export default function Header() {
     const { currentUser, userRank, logout } = useAuth();
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
+    const [copyFeedback, setCopyFeedback] = useState(false);
+
+    const copyServerAddress = () => {
+        const serverAddress = 'play.crontor.com:6906';
+        navigator.clipboard.writeText(serverAddress).then(() => {
+            setCopyFeedback(true);
+            setTimeout(() => setCopyFeedback(false), 2000);
+        });
+    };
 
     const handleLogout = () => {
         if (window.confirm('¿Estás seguro que deseas cerrar sesión?')) {
@@ -35,6 +44,14 @@ export default function Header() {
                             <img src="/assets/logo_pequeño.png" alt="Crontor" style={{ height: '140px' }} />
                         </Link>
                     </div>
+
+                    <div className="header-ip-container" onClick={copyServerAddress} title="Click para copiar la IP">
+                        <span className="header-ip-text">play.crontor.com:6906</span>
+                        <div className={`header-ip-copy-badge ${copyFeedback ? 'show' : ''}`}>
+                            ✓ ¡Copiada!
+                        </div>
+                    </div>
+
                     <div className="nav-links">
                         <Link to="/" className="nav-link">Inicio</Link>
                         <a href="https://crontor.tebex.io/" className="nav-link" target="_blank" rel="noopener noreferrer">Tienda</a>

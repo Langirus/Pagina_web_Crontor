@@ -50,20 +50,8 @@ export default function Home() {
                             <div
                                 className="server-address-box"
                                 onClick={copyServerAddress}
-                                style={{
-                                    display: 'inline-flex',
-                                    alignItems: 'center',
-                                    gap: 'var(--spacing-md)',
-                                    background: 'rgba(26, 26, 36, 0.8)',
-                                    border: '2px solid rgba(212, 165, 116, 0.5)',
-                                    borderRadius: 'var(--radius-md)',
-                                    padding: 'var(--spacing-lg) var(--spacing-xl)',
-                                    cursor: 'pointer',
-                                    transition: 'all var(--transition-fast)',
-                                    marginBottom: 'var(--spacing-sm)'
-                                }}
                             >
-                                <span className="server-address" style={{ fontFamily: "'Courier New', monospace", fontSize: '1.75rem', color: 'var(--color-accent)', fontWeight: 700 }}>
+                                <span className="server-address">
                                     play.crontor.com:6906
                                 </span>
                                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--color-accent)' }}>
@@ -74,19 +62,8 @@ export default function Home() {
                             <div
                                 className="server-address-box"
                                 onClick={copyServerAddressIP}
-                                style={{
-                                    display: 'inline-flex',
-                                    alignItems: 'center',
-                                    gap: 'var(--spacing-md)',
-                                    background: 'rgba(26, 26, 36, 0.8)',
-                                    border: '2px solid rgba(212, 165, 116, 0.5)',
-                                    borderRadius: 'var(--radius-md)',
-                                    padding: 'var(--spacing-lg) var(--spacing-xl)',
-                                    cursor: 'pointer',
-                                    transition: 'all var(--transition-fast)'
-                                }}
                             >
-                                <span className="server-address-ip" style={{ fontFamily: "'Courier New', monospace", fontSize: '1.75rem', color: 'var(--color-accent)', fontWeight: 700 }}>
+                                <span className="server-address-ip">
                                     147.185.221.25:6906
                                 </span>
                                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--color-accent)' }}>
